@@ -1,22 +1,20 @@
 package com.af.tasks
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.Update
 
 @Dao
 interface TaskDAO {
 
     //suspend to use coroutines
     @Insert
-    suspend fun insert(task:Task)
+    suspend fun insert(task:ToDoTask)
 
-    @Update
-    suspend fun update(task: Task)
-
-    @Delete
-    suspend fun delete(task: Task)
+//    @Update
+//    suspend fun update(task: ToDoTask)
+//
+//    @Delete
+//    suspend fun delete(task: ToDoTask)
 
 //    @Query("SELECT * FROM task_table WHERE taskId = :taskId")
 //    fun get(taskId:Long):LiveData<Task>
