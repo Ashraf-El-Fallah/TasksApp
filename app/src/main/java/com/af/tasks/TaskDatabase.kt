@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+//data base class
 @Database(entities = [ToDoTask::class], version = 1, exportSchema = false)
 abstract class TaskDatabase :RoomDatabase(){
     //you will use data access methods in TaskDAO

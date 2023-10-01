@@ -10,6 +10,7 @@ import com.af.tasks.TasksViewModel
 import com.af.tasks.TasksViewModelFactory
 import com.af.tasks.databinding.FragmentTasksBinding
 
+
 class TasksFragment: Fragment(){
 
     private var _binding: FragmentTasksBinding? = null

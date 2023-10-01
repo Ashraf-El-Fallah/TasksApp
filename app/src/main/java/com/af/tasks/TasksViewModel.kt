@@ -1,12 +1,25 @@
 package com.af.tasks
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class TasksViewModel(private val dao: TaskDAO):ViewModel() {
     var newTaskName=""
+
+//    private val tasks = dao.getAll()
+//    val tasksString = Transformation.map(tasks) {
+//            tasks -> formatTasks(tasks)
+//    }
+
+
+
+    private val tasksString = dao.getAll().map { formatTasks(it) }
+
+//    val tasksString = tasks.map { tasks -> formatTasks(tasks) }
 
     fun addTask() {
         //launch the coroutines in the same as the view model
@@ -18,5 +31,19 @@ class TasksViewModel(private val dao: TaskDAO):ViewModel() {
             task.taskName = newTaskName
             dao.insert(task)
         }
+    }
+
+    fun formatTasks(tasks:List<ToDoTask>):String{
+        return tasks.fold(""){
+            str,item-> str + '\n' + formatTask(item)
+        }
+    }
+
+    fun formatTask(task: ToDoTask):String{
+        var str="ID : ${task.taskId}"
+        str += '\n' + "Name: ${task.taskName}"
+        str += '\n' + "Complete: ${task.taskDone}" + '\n'
+
+        return str
     }
 }
