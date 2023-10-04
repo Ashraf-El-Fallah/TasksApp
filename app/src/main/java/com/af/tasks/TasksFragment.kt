@@ -6,11 +6,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import kotlin.Long
+
+import androidx.navigation.fragment.findNavController
 import com.af.tasks.TaskDatabase
 import com.af.tasks.TaskItemAdapter
 import com.af.tasks.TasksViewModel
 import com.af.tasks.TasksViewModelFactory
 import com.af.tasks.databinding.FragmentTasksBinding
+
 
 
 class TasksFragment: Fragment(){
@@ -41,7 +46,12 @@ class TasksFragment: Fragment(){
         binding.lifecycleOwner = viewLifecycleOwner
 
         //take a task adapter object
-        val adapter=TaskItemAdapter()
+        //passing lambda function to adapter to make the item respond to clicks and display a toast
+        val adapter=TaskItemAdapter{taskId ->
+            //Toast.makeText(context,"Clicked task $taskId",Toast.LENGTH_SHORT).show()
+            viewModel.onTaskClicked(taskId)
+        }
+
         binding.tasksList.adapter=adapter
 
         //set the TaskItemAdapter's data property to List<Task>
@@ -52,8 +62,19 @@ class TasksFragment: Fragment(){
                 //…using submitList()
                 //To pass a list of tasks to TaskItemAdapter’s backing list, we’ll use a method called submitList().
                 // This method is used to update a ListAdapter’s backing list with a new List object, so it’s perfect for this situation.
-
+                //Use the submitList() method to submit a new version of a list to a ListAdapter Recycler views
+                
                 adapter.submitList(it)
+            }
+        })
+
+        //run this code when navigateToTask is set to a new taskId that's not null
+        viewModel.navigateToTask.observe(viewLifecycleOwner, Observer {taskId->
+            taskId?.let {
+                val action=TasksFragmentDirections
+                    .actionTasksFragmentToEditTaskFragment(taskId)
+                this.findNavController().navigate(action)
+                viewModel.onTaskNavigated()
             }
         })
 

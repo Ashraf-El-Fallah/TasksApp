@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.af.tasks.databinding.TaskItemBinding
 
-class TaskItemAdapter:ListAdapter<ToDoTask,TaskItemAdapter.TaskItemViewHolder>(TaskDiffItemCallBack()){
+class TaskItemAdapter(val clickListener:(taskId:Long)->Unit):ListAdapter<ToDoTask,TaskItemAdapter.TaskItemViewHolder>(TaskDiffItemCallBack()){
     //RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>() {
 
     //set(value) .. This is the setter block. It gets executed when you assign a new value to the data property.
@@ -38,10 +38,10 @@ class TaskItemAdapter:ListAdapter<ToDoTask,TaskItemAdapter.TaskItemViewHolder>(T
                 return TaskItemViewHolder(binding)
             }
         }
-        fun bind(item:ToDoTask){
+        fun bind(item:ToDoTask,clickListener: (taskId: Long) -> Unit){
             //this is used for findviewbyId
-//            taskName.text=item.taskName
-//            taskDone.isChecked=item.taskDone
+//           taskName.text=item.taskName
+//           taskDone.isChecked=item.taskDone
 
             //this for data binding
             //binding.task=item
@@ -49,6 +49,9 @@ class TaskItemAdapter:ListAdapter<ToDoTask,TaskItemAdapter.TaskItemViewHolder>(T
             //this is used with view binding
             binding.taskName.text=item.taskName
             binding.taskDone.isChecked=item.taskDone
+
+            //we bind onClickListener to the root view of each view holder's layout
+            binding.root.setOnClickListener{clickListener(item.taskId)}
 
         }
     }
@@ -63,7 +66,7 @@ class TaskItemAdapter:ListAdapter<ToDoTask,TaskItemAdapter.TaskItemViewHolder>(T
     //it's called for each TaskItemViewHolder to bind data to views in each view holder layout
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {
         val item=getItem(position)
-        holder.bind(item)
+        holder.bind(item,clickListener)
     }
 
 

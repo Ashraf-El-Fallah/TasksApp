@@ -10,7 +10,7 @@ import androidx.room.Update
 @Dao
 interface TaskDAO {
 
-    //interface for data access
+    //interface for data access .. it's used to interact with tasks record in room data base
     //suspend to use coroutines
     @Insert
     suspend fun insert(task:ToDoTask)

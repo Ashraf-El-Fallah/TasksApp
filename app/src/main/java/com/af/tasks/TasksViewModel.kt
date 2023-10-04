@@ -1,5 +1,7 @@
 package com.af.tasks
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +18,19 @@ class TasksViewModel(private val dao: TaskDAO):ViewModel() {
 //}
 
      val tasks = dao.getAll()
+
+    //live data
+    private val _navigateToTask= MutableLiveData<Long?>()
+    val navigateToTask:LiveData<Long?>
+        get() = _navigateToTask
+
+    fun onTaskClicked(taskId:Long){
+        _navigateToTask.value=taskId
+    }
+
+    fun onTaskNavigated(){
+        _navigateToTask.value=null
+    }
 
     fun addTask() {
         //launch the coroutines in the same as the view model
