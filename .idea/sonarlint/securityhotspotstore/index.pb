@@ -366,3 +366,7 @@ w
 G.idea/sonarlint/issuestore/3/1/31c845172c50fd6cd68741f1ca4248d96436f9df,2\0\20df6c6991517b6deeefda5dfb26d894d8c19f4d
 w
 G.idea/sonarlint/issuestore/3/f/3feb008e00701f06269feecfe866107adeba86df,0\f\0ff5f523902ff98f0edcc4b098ce497c3254701b
+j
+:app/src/main/java/com/af/tasks/EditTaskViewModelFactory.kt,6\2\62a84ab85f6474446a31909aadb1b6639db87962
+c
+3app/src/main/java/com/af/tasks/EditTaskViewModel.kt,a\b\abf6ce97cb1a7740be51a6cf27c2f606d8044d93
