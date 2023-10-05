@@ -8,13 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.af.tasks.R
 import com.af.tasks.TaskDatabase
 import com.af.tasks.TaskItemAdapter
-import com.af.tasks.TasksFragmentDirections
 import com.af.tasks.TasksViewModel
 import com.af.tasks.TasksViewModelFactory
 import com.af.tasks.databinding.FragmentTasksBinding
-
 
 
 class TasksFragment: Fragment(){
@@ -79,9 +78,11 @@ class TasksFragment: Fragment(){
         viewModel.navigateToTask.observe(viewLifecycleOwner, Observer {taskId->
             taskId?.let {
 
-                val action=TasksFragmentDirections.actionTasksFragmentToEditTaskFragment(taskId)
+                val args=Bundle()
+                args.putLong("taskId",taskId)
+                //val action=TasksFragmentDirections.actionTasksFragmentToEditTaskFragment(taskId)
 
-                this.findNavController().navigate(action)
+                this.findNavController().navigate(R.id.action_tasksFragment_to_editTaskFragment,args)
                 viewModel.onTaskNavigated()
             }
         })

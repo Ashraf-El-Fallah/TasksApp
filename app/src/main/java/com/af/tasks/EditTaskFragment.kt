@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.af.tasks.EditTaskFragmentArgs
 import com.af.tasks.databinding.FragmentEditTaskBinding
 
 class EditTaskFragment :Fragment(){
@@ -28,8 +27,12 @@ class EditTaskFragment :Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textView=binding.taskId
-        val taskId=EditTaskFragmentArgs.fromBundle(requireArguments()).taskId
+        //val textView=binding.taskId
+
+       //arguments?.getLong("taskId")
+
+        val taskId= arguments?.getLong("taskId")
+
         binding.taskId.text=taskId.toString()
 
     }
