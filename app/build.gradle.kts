@@ -7,6 +7,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 
 
+
     //emad plugins
 //    id ("com.android.application")
 //    id ("kotlin-android")
@@ -68,13 +69,15 @@ android {
 dependencies {
     //my dependencies
 
-    val nav_version = "2.7.4"
+    val nav_version = "2.5.3"
 
     //navigation component
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     //view model and live data
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 

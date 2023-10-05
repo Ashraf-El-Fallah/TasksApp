@@ -4,34 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/tasksFragment">
-
     <fragment
         android:id="@+id/tasksFragment"
-        android:name="TasksFragment"
-        android:label="TasksFragment"
-        tools:layout="@layout/fragment_tasks">
+        android:name="com.af.tasks.TasksFragment"
+        android:label="fragment_tasks"
+        tools:layout="@layout/fragment_tasks" >
         <action
             android:id="@+id/action_tasksFragment_to_editTaskFragment"
             app:destination="@id/editTaskFragment" />
-
     </fragment>
-
     <fragment
         android:id="@+id/editTaskFragment"
-        android:name="EditTaskFragment"
-        android:label="EditTaskFragment"
-        tools:layout="@layout/fragment_edit_task">
-
+        android:name="com.af.tasks.EditTaskFragment"
+        android:label="fragment_edit_task"
+        tools:layout="@layout/fragment_edit_task" >
         <argument
             android:name="taskId"
-            app:argType="Long"/>
-
+            app:argType="long" />
         <action
             android:id="@+id/action_editTaskFragment_to_tasksFragment"
             app:destination="@id/tasksFragment"
             app:popUpTo="@id/tasksFragment"
-            app:popUpToInclusive="true"/>
-
+            app:popUpToInclusive="true" />
     </fragment>
-
 </navigation>
