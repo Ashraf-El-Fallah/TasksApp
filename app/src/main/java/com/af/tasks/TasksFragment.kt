@@ -1,4 +1,5 @@
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import kotlin.Long
-
 import androidx.navigation.fragment.findNavController
 import com.af.tasks.TaskDatabase
 import com.af.tasks.TaskItemAdapter
